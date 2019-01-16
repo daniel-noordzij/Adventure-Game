@@ -15,7 +15,21 @@
 	margin-top: 0px;
 	margin-left: 0px;
 	position: absolute;
-	z-index: 5;
+	z-index: 1;
+}
+
+.playertest2 {
+	margin-top: 24px;
+	margin-left: 140px;
+	position: absolute;
+	z-index: 6;
+}
+
+.playertest {
+	margin-top: 16px;
+	margin-left: 100px;
+	position: absolute;
+	z-index: 4;
 }
 
 #saved {
