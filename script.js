@@ -3,7 +3,8 @@ downCode = 83,
 leftCode = 65,
 rightCode = 68,
 useCode = 70,
-slashCode = 32;
+slashCode = 32,
+menuCode = 73;
 
 function setInput(target) {
 	$("#"+target.id).val("");
@@ -26,71 +27,22 @@ function startGame() {
 
 	var player = document.getElementById('player').style;
 	var slashing = false;
+	var slashTimer = false;
 	var using = false;
 	var menuOpen = false;
 	var movementSpeed = 4;
+	var pressedKeys = [];
+	var element = document.getElementById('player'),
+	style = window.getComputedStyle(element);
+	var slashTime = 5000;
 
-	document.addEventListener('keydown', function(event) {
-		if(event.keyCode === upCode && menuOpen === false) {
-			var element = document.getElementById('player'),
-			style = window.getComputedStyle(element),
-			top = style.getPropertyValue('margin-top');
+	$(document.body).keydown(function (evt) {
+		if(!pressedKeys.includes(evt.keyCode)){
+			pressedKeys.push(evt.keyCode);
+		}
+		pressedKeys[evt.keyCode] = true;
 
-			if (top !== "0px") {
-				var newTopNum = parseInt(top) - movementSpeed,
-				newTop = newTopNum + "px";
-				
-				player.marginTop = newTop;
-			}
-		} else if(event.keyCode === rightCode && menuOpen === false) {
-			var element = document.getElementById('player'),
-			style = window.getComputedStyle(element),
-			side = style.getPropertyValue('margin-left');
-
-			if (side !== "712px") {
-				var newSideNum = parseInt(side) + movementSpeed,
-				newSide = newSideNum + "px";
-				
-				player.marginLeft = newSide;
-			}
-		} else if(event.keyCode === leftCode && menuOpen === false) {
-			var element = document.getElementById('player'),
-			style = window.getComputedStyle(element),
-			side = style.getPropertyValue('margin-left');
-
-			if (side !== "0px") {
-				var newSideNum = parseInt(side) - movementSpeed,
-				newSide = newSideNum + "px";
-				
-				player.marginLeft = newSide;
-			}
-		} else if(event.keyCode === downCode && menuOpen === false) {
-			var element = document.getElementById('player'),
-			style = window.getComputedStyle(element),
-			top = style.getPropertyValue('margin-top');
-
-			if (top !== "456px") {
-				var newTopNum = parseInt(top) + movementSpeed,
-				newTop = newTopNum + "px";
-				
-				player.marginTop = newTop;
-			}
-		} else if(event.keyCode === slashCode) {
-			if(slashing === false && menuOpen === false) {
-				slashing = true;
-				console.log("slash");
-				document.getElementById("player").src = "images/playerSlash.png";
-				setTimeout(function(){
-					document.getElementById("player").src = "images/player.png";
-				}, 150);
-			}
-		} else if(event.keyCode === useCode) {
-			if(using === false && menuOpen === false) {
-				using = true;
-				console.log("use");
-
-			}
-		} else if(event.keyCode === 73) {
+		if(pressedKeys[menuCode] === true) {
 			if(menuOpen === false) {
 				menuOpen = true;
 				document.getElementById("inventoryMenu").style.left = "0";
@@ -100,11 +52,93 @@ function startGame() {
 			}
 		}
 	});
-	document.addEventListener('keyup', function(event) {
-		if(event.keyCode === slashCode) {
-			slashing = false;
-		} else if (event.keyCode === useCode) {
+
+	setInterval(function() {
+		if(pressedKeys[upCode] === true && menuOpen === false) {
+			var top = style.getPropertyValue('margin-top');
+
+			if (top !== "0px") {
+				var newTopNum = parseInt(top) - movementSpeed,
+				newTop = newTopNum + "px";
+					
+				player.marginTop = newTop;
+			}
+				
+		}
+		if(pressedKeys[rightCode] === true && menuOpen === false) {
+			var side = style.getPropertyValue('margin-left');
+
+			if (side !== "712px") {
+				var newSideNum = parseInt(side) + movementSpeed,
+				newSide = newSideNum + "px";
+					
+				player.marginLeft = newSide;
+			}
+				
+		}
+		if(pressedKeys[leftCode] === true && menuOpen === false) {
+			var side = style.getPropertyValue('margin-left');
+
+			if (side !== "0px") {
+				var newSideNum = parseInt(side) - movementSpeed,
+				newSide = newSideNum + "px";
+					
+				player.marginLeft = newSide;
+			}
+				
+		}
+		if(pressedKeys[downCode] === true && menuOpen === false) {
+			var top = style.getPropertyValue('margin-top');
+
+			if (top !== "456px") {
+				var newTopNum = parseInt(top) + movementSpeed,
+				newTop = newTopNum + "px";
+					
+				player.marginTop = newTop;
+			}
+				
+		}
+		if(pressedKeys[slashCode] === true) {
+			if(slashing === false && menuOpen === false) {
+					slashing = true;
+					console.log("slash");
+					document.getElementById("player").src = "images/playerSlash.png";
+					setTimeout(function(){
+						document.getElementById("player").src = "images/player.png";
+					}, 150);
+			}
+		}
+		if(pressedKeys[useCode] === true) {
+			if(using === false && menuOpen === false) {
+				using = true;
+				console.log("use");
+
+			}
+		}
+
+	}, 30);
+
+	
+
+	$(document.body).keyup(function (evt) {
+		pressedKeys[evt.keyCode] = false;
+
+		if(evt.keyCode === slashCode && slashTimer === false) {
+			slashTimer = true;
+			setTimeout(function(){
+				slashing = false;
+				slashTimer = false;
+			}, slashTime);
+		}
+		if (evt.keyCode === useCode) {
 			using = false;
 		}
 	});
+/*	setInterval(function(){
+		if (pressedKeys.length >= 1 && keyAmount === 0) {
+			pressedKeys = [];
+		}
+	}, 1000);*/
+
+
 }
