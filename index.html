@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adventure Game JS</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<a href="#" id="startButton" class="button" onclick="startGame()">Start Game</a>
+	<div id="controls">
+		<label for="upInput">Up:</label>
+		<input type="text" id="upInput" onkeydown="setInput(this)" size="3" maxlength="1">
+		<label for="upInput">Down:</label>
+		<input type="text" id="downInput" onkeydown="setInput(this)" size="3" maxlength="1">
+		<label for="upInput">Left:</label>
+		<input type="text" id="leftInput" onkeydown="setInput(this)" size="3" maxlength="1">
+		<label for="upInput">Right:</label>
+		<input type="text" id="rightInput" onkeydown="setInput(this)" size="3" maxlength="1">
+		<label for="upInput">Use:</label>
+		<input type="text" id="useInput" onkeydown="setInput(this)" size="3" maxlength="1">
+		<label for="upInput">Slash Weapon:</label>
+		<input type="text" id="slashInput" onkeydown="setInput(this)" size="3" maxlength="1">
+		<button id="saveControls" onclick="saveControls()">Save!</button><br>
+		<p id="saved">Controls have been saved!</p>
+	</div>
+	<div id="gameBorder">
+		<img src="images/player.png" id="player" class="player">
+		<div id="inventoryMenu">
+			<p id="menuButtons"><a href="#" id="invButton" class="menuButton">Inventory</a></p>
+			<p id="menuButtons"><a href="#" id="ctrlButton" class="menuButton">Controls</a></p>
+			<p id="menuButtons"><a href="#" id="testButton" class="menuButton">testButton</a></p>
+			<p id="menuButtons"><a href="#" id="quitButton" class="menuButton">Quit</a></p>
+		</div>
+		<div id="backgroundImages">
+			<img src="images/ow1.png" id="ow1Image">
+		</div>
+		
+	</div>
+</body>
+</html>
