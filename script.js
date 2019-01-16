@@ -25,16 +25,16 @@ function startGame() {
 	document.getElementById('startButton').style.display = "none";
 	document.getElementById('controls').style.display = "none";
 
-	var player = document.getElementById('player').style;
 	var slashing = false;
 	var slashTimer = false;
 	var using = false;
 	var menuOpen = false;
 	var movementSpeed = 4;
 	var pressedKeys = [];
-	var element = document.getElementById('player'),
-	style = window.getComputedStyle(element);
+	var player = document.getElementById('player'),
+	style = window.getComputedStyle(player);
 	var slashTime = 5000;
+
 
 	$(document.body).keydown(function (evt) {
 		if(!pressedKeys.includes(evt.keyCode)){
@@ -51,7 +51,38 @@ function startGame() {
 				document.getElementById("inventoryMenu").style.left = "-131px";
 			}
 		}
+
+		if(pressedKeys[useCode] === true) {
+			if(using === false && menuOpen === false) {
+				using = true;
+				console.log("use");
+			}
+		}
 	});
+
+	function getPosition(elem) {
+	 	var pos, width, height;
+		pos = $(elem).position();
+		width = $(elem).width();
+		height = $(elem).height();
+		return [ [ pos.left, pos.left + width ], [ pos.top, pos.top + height ] ];
+	}
+
+	function comparePositions(p1, p2) {
+		var r1, r2;
+		r1 = p1[0] < p2[0] ? p1 : p2;
+		r2 = p1[0] < p2[0] ? p2 : p1;
+		return r1[1] > r2[0] || r1[0] === r2[0];
+	}
+
+	function getOverlap(a, b) {
+		var pos1 = getPosition(a),
+			pos2 = getPosition(b);
+		return comparePositions( pos1[0], pos2[0] ) && comparePositions( pos1[1], pos2[1] );
+	}
+
+	// var test = getOverlap();
+
 
 	setInterval(function() {
 		if(pressedKeys[upCode] === true && menuOpen === false) {
@@ -61,7 +92,7 @@ function startGame() {
 				var newTopNum = parseInt(top) - movementSpeed,
 				newTop = newTopNum + "px";
 					
-				player.marginTop = newTop;
+				player.style.marginTop = newTop;
 			}
 				
 		}
@@ -72,7 +103,7 @@ function startGame() {
 				var newSideNum = parseInt(side) + movementSpeed,
 				newSide = newSideNum + "px";
 					
-				player.marginLeft = newSide;
+				player.style.marginLeft = newSide;
 			}
 				
 		}
@@ -83,7 +114,7 @@ function startGame() {
 				var newSideNum = parseInt(side) - movementSpeed,
 				newSide = newSideNum + "px";
 					
-				player.marginLeft = newSide;
+				player.style.marginLeft = newSide;
 			}
 				
 		}
@@ -94,31 +125,20 @@ function startGame() {
 				var newTopNum = parseInt(top) + movementSpeed,
 				newTop = newTopNum + "px";
 					
-				player.marginTop = newTop;
+				player.style.marginTop = newTop;
 			}
 				
 		}
 		if(pressedKeys[slashCode] === true) {
 			if(slashing === false && menuOpen === false) {
 					slashing = true;
-					console.log("slash");
-					document.getElementById("player").src = "images/playerSlash.png";
+					player.src = "images/playerSlash.png";
 					setTimeout(function(){
-						document.getElementById("player").src = "images/player.png";
+						player.src = "images/player.png";
 					}, 150);
 			}
 		}
-		if(pressedKeys[useCode] === true) {
-			if(using === false && menuOpen === false) {
-				using = true;
-				console.log("use");
-
-			}
-		}
-
 	}, 30);
-
-	
 
 	$(document.body).keyup(function (evt) {
 		pressedKeys[evt.keyCode] = false;
@@ -134,11 +154,4 @@ function startGame() {
 			using = false;
 		}
 	});
-/*	setInterval(function(){
-		if (pressedKeys.length >= 1 && keyAmount === 0) {
-			pressedKeys = [];
-		}
-	}, 1000);*/
-
-
 }
