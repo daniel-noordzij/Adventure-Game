@@ -229,23 +229,42 @@ function startGame() {
 		// Stop moving when hitting a hitbox
 		
 		var playerHitbox = player.getBoundingClientRect();
+		var hitboxAmount = hitboxes.length;
 
-		for (var i = hitboxes.length - 1; i >= 0; i--) {
-			var hitboxCoords = hitboxes[i].getBoundingClientRect();
-			var hitboxCoordsleft = parseInt(hitboxCoords.left) - 36;
-			var hitboxCoordsright = parseInt(hitboxCoords.right) + 36;
-/*			var hitboxCoordstop = parseInt(hitboxCoords.top) + 36;
-			var hitboxCoordsbottom = parseInt(hitboxCoords.bottom) + 36;*/
-			if (playerHitbox.top <= hitboxCoords.bottom && playerHitbox.left >= hitboxCoordsleft && playerHitbox.right <= hitboxCoordsright) {
+		for (var i = 0; i < hitboxAmount; i++) {
+			var hitbox_coords = hitboxes[i].getBoundingClientRect();
+			var hitbox_coords_left = parseInt(hitbox_coords.left) - 36;
+			var hitbox_coords_right = parseInt(hitbox_coords.right) + 36;
+			var hitbox_coords_top = parseInt(hitbox_coords.top);
+			var hitbox_coords_bottom = parseInt(hitbox_coords.bottom);
+			var hitbox_coords_left_min = parseInt(hitbox_coords.left) - 4;
+			var hitbox_coords_left_max = parseInt(hitbox_coords.left) - 8;
+			var hitbox_coords_right_min = parseInt(hitbox_coords.right);
+			var hitbox_coords_right_max = parseInt(hitbox_coords.right) + 4;
+			var hitbox_coords_top_min = parseInt(hitbox_coords.top);
+			var hitbox_coords_top_max = parseInt(hitbox_coords.top) - 4;
+			var hitbox_coords_bottom_min = parseInt(hitbox_coords.bottom);
+			var hitbox_coords_bottom_max = parseInt(hitbox_coords.bottom) + 4;
+			if (playerHitbox.top >= hitbox_coords_bottom_min && playerHitbox.top <= hitbox_coords_bottom_max && playerHitbox.left >= hitbox_coords_left && playerHitbox.right <= hitbox_coords_right) {
 				ableToMoveUp = false;
 			} else {
 				ableToMoveUp = true;
 			}
-			if (playerHitbox.bottom >= hitboxCoords.top && playerHitbox.left >= hitboxCoordsleft && playerHitbox.right <= hitboxCoordsright) {
+			if (playerHitbox.bottom <= hitbox_coords_top_min && playerHitbox.bottom >= hitbox_coords_top_max && playerHitbox.left >= hitbox_coords_left && playerHitbox.right <= hitbox_coords_right) {
 				ableToMoveDown = false;
 			} else {
 				ableToMoveDown = true;
 			}
+			if (playerHitbox.bottom >= hitbox_coords_top && playerHitbox.top <= hitbox_coords_bottom && playerHitbox.left >= hitbox_coords_right_min && playerHitbox.left <= hitbox_coords_right_max) {
+				ableToMoveLeft = false;
+			} else {
+				ableToMoveLeft = true;
+			}
+			if (playerHitbox.bottom >= hitbox_coords_top && playerHitbox.top <= hitbox_coords_bottom && playerHitbox.right >= hitbox_coords_left_min && playerHitbox.right <= hitbox_coords_right_max) {
+				ableToMoveRight = false;
+			} else {
+				ableToMoveRight = true;
+			}	
 		}
 
 		
