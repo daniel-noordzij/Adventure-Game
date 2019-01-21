@@ -3,6 +3,7 @@
 	padding: 0;
 }
 
+
 .button {
 	display: inline-block;
 	padding: 7px 25px 10px 25px;
@@ -12,8 +13,8 @@
 }
 
 .player {
-	margin-top: 0px;
-	margin-left: 0px;
+	margin-top: 248px;
+	margin-left: 400px;
 	position: absolute;
 	z-index: 1;
 }
@@ -55,7 +56,7 @@
 }
 
 #gameBorder {
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 	margin: 5% 0 0 25%;
 	height: 502px;
 	width: 756px;
@@ -80,32 +81,69 @@
 }
 
 .bigTreeHitboxes {
-	width: 64px;
-	height: 44px;
+	width: 60px;
+	height: 10px;
 }
 
 .bigTreeHitbox1 {
-	margin-top: 360px;
+	margin-top: 390px;
 	margin-left: 524px;
 }
 
 .bigTreeHitbox2 {
-	margin-top: 360px;
+	margin-top: 390px;
 	margin-left: 460px;
 }
 
 .bigTreeHitbox3 {
-	margin-top: 140px;
+	margin-top: 170px;
+	margin-left: 90px;
+}
+
+.bigTreeHitbox4 {
+	margin-top: 0px;
+	margin-left: 90px;
+}
+
+.bigTreeHitbox5 {
+	margin-top: 0px;
+	margin-left: 210px;
+}
+
+.bigTreeHitbox6 {
+	margin-top: 144px;
+	margin-left: 264px;
+}
+
+/* --------- */
+/* Loadboxes */
+/* --------- */
+
+.loadbox {
+	position: absolute;
+	background-color: green;
+}
+
+.ow2Loadbox {
+	width: 50px;
+	height: 10px;
 	margin-left: 150px;
+}
+
+.ow1Loadbox {
+	width: 50px;
+	height: 10px;
+	margin-left: 150px;
+	margin-top: 426px;
 }
 
 /* ----------------- */
 /* Overworld Start 1 */
 /* ----------------- */
 
-#overworld_start1 {
+#owImage {
 	position: absolute;
-	margin-top: -301px;
+
 	z-index: -1;
 }
 
@@ -128,4 +166,29 @@
 	margin-left: 64px;
 	position: absolute;
 	z-index: 27;
+}
+
+.bigTree4 {
+	margin-top: -66px;
+	margin-left: 66px;
+	position: absolute;
+	z-index: 1;
+}
+
+.bigTree5 {
+	margin-top: -66px;
+	margin-left: 186px;
+	position: absolute;
+	z-index: 1;
+}
+
+/* ----------------- */
+/* Overworld Start 2 */
+/* ----------------- */
+
+.bigTree6 {
+	margin-top: 80px;
+	margin-left: 240px;
+	position: absolute;
+	z-index: 21;
 }
