@@ -260,8 +260,9 @@ function startGame() {
 		if (playerHitbox.top >= hitboxCoords.bottom_min[HBAmount] && playerHitbox.top <= hitboxCoords.bottom_max[HBAmount] && playerHitbox.left >= hitboxCoords.left[HBAmount] && playerHitbox.right <= hitboxCoords.right[HBAmount]) {
 			ableToMoveUp = false;
 			currentHitbox = HBAmount;
-			if(pressedKeys[upCode] === true && menuOpen === false) {
+			if(pressedKeys[upCode] === true && menuOpen === false && pressedKeys[downCode] === false && pressedKeys[rightCode] === false && pressedKeys[leftCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_up_static.png";
 			}
 		} else if (currentHitbox !== HBAmount) {
 		} else {
@@ -271,8 +272,9 @@ function startGame() {
 		if (playerHitbox.bottom <= hitboxCoords.top_min[HBAmount] && playerHitbox.bottom >= hitboxCoords.top_max[HBAmount] && playerHitbox.left >= hitboxCoords.left[HBAmount] && playerHitbox.right <= hitboxCoords.right[HBAmount]) {
 			ableToMoveDown = false;
 			currentHitbox = HBAmount;
-			if(pressedKeys[downCode] === true && menuOpen === false) {
+			if(pressedKeys[downCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[rightCode] === false && pressedKeys[leftCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_down_static.png";
 			}
 		} else if (currentHitbox !== HBAmount) {
 		} else {
@@ -282,8 +284,9 @@ function startGame() {
 		if (playerHitbox.bottom >= hitboxCoords.top[HBAmount] && playerHitbox.top <= hitboxCoords.bottom[HBAmount] && playerHitbox.left >= hitboxCoords.right_min[HBAmount] && playerHitbox.left <= hitboxCoords.right_max[HBAmount]) {
 			ableToMoveLeft = false;
 			currentHitbox = HBAmount;
-			if(pressedKeys[leftCode] === true && menuOpen === false) {
+			if(pressedKeys[leftCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[rightCode] === false && pressedKeys[downCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_left_static.png";
 			}
 		} else if (currentHitbox !== HBAmount) {
 		} else {
@@ -293,8 +296,9 @@ function startGame() {
 		if (playerHitbox.bottom >= hitboxCoords.top[HBAmount] && playerHitbox.top <= hitboxCoords.bottom[HBAmount] && playerHitbox.right >= hitboxCoords.left_min[HBAmount] && playerHitbox.right <= hitboxCoords.right_max[HBAmount]) {
 			ableToMoveRight = false;
 			currentHitbox = HBAmount;
-			if(pressedKeys[rightCode] === true && menuOpen === false) {
+			if(pressedKeys[rightCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[leftCode] === false && pressedKeys[downCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_right_static.png";
 			}
 		} else if (currentHitbox !== HBAmount) {
 		} else {
@@ -313,8 +317,9 @@ function startGame() {
 		if (playerHitbox.top >= hitboxCoords.bottom_min[HBAmount2] && playerHitbox.top <= hitboxCoords.bottom_max[HBAmount2] && playerHitbox.left >= hitboxCoords.left[HBAmount2] && playerHitbox.right <= hitboxCoords.right[HBAmount2]) {
 			ableToMoveUp = false;
 			currentHitbox = HBAmount2;
-			if(pressedKeys[upCode] === true && menuOpen === false) {
+			if(pressedKeys[upCode] === true && menuOpen === false && pressedKeys[downCode] === false && pressedKeys[rightCode] === false && pressedKeys[leftCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_up_static.png";
 			}
 		} else if (currentHitbox !== HBAmount2) {
 		} else {
@@ -324,8 +329,9 @@ function startGame() {
 		if (playerHitbox.bottom <= hitboxCoords.top_min[HBAmount2] && playerHitbox.bottom >= hitboxCoords.top_max[HBAmount2] && playerHitbox.left >= hitboxCoords.left[HBAmount2] && playerHitbox.right <= hitboxCoords.right[HBAmount2]) {
 			ableToMoveDown = false;
 			currentHitbox = HBAmount2;
-			if(pressedKeys[downCode] === true && menuOpen === false) {
+			if(pressedKeys[downCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[rightCode] === false && pressedKeys[leftCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_down_static.png";
 			}
 		} else if (currentHitbox !== HBAmount2) {
 		} else {
@@ -335,8 +341,9 @@ function startGame() {
 		if (playerHitbox.bottom >= hitboxCoords.top[HBAmount2] && playerHitbox.top <= hitboxCoords.bottom[HBAmount2] && playerHitbox.left >= hitboxCoords.right_min[HBAmount2] && playerHitbox.left <= hitboxCoords.right_max[HBAmount2]) {
 			ableToMoveLeft = false;
 			currentHitbox = HBAmount2;
-			if(pressedKeys[leftCode] === true && menuOpen === false) {
+			if(pressedKeys[leftCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[rightCode] === false && pressedKeys[downCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_left_static.png";
 			}
 		} else if (currentHitbox !== HBAmount2) {
 		} else {
@@ -346,8 +353,9 @@ function startGame() {
 		if (playerHitbox.bottom >= hitboxCoords.top[HBAmount2] && playerHitbox.top <= hitboxCoords.bottom[HBAmount2] && playerHitbox.right >= hitboxCoords.left_min[HBAmount2] && playerHitbox.right <= hitboxCoords.right_max[HBAmount2]) {
 			ableToMoveRight = false;
 			currentHitbox = HBAmount2;
-			if(pressedKeys[rightCode] === true && menuOpen === false) {
+			if(pressedKeys[rightCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[leftCode] === false && pressedKeys[downCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_right_static.png";
 			}
 		} else if (currentHitbox !== HBAmount2) {
 		} else {
@@ -366,8 +374,9 @@ function startGame() {
 		if (playerHitbox.top >= hitboxCoords.bottom_min[HBAmount3] && playerHitbox.top <= hitboxCoords.bottom_max[HBAmount3] && playerHitbox.left >= hitboxCoords.left[HBAmount3] && playerHitbox.right <= hitboxCoords.right[HBAmount3]) {
 			ableToMoveUp = false;
 			currentHitbox = HBAmount3;
-			if(pressedKeys[upCode] === true && menuOpen === false) {
+			if(pressedKeys[upCode] === true && menuOpen === false && pressedKeys[downCode] === false && pressedKeys[rightCode] === false && pressedKeys[leftCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_up_static.png";
 			}
 		} else if (currentHitbox !== HBAmount3) {
 		} else {
@@ -377,8 +386,9 @@ function startGame() {
 		if (playerHitbox.bottom <= hitboxCoords.top_min[HBAmount3] && playerHitbox.bottom >= hitboxCoords.top_max[HBAmount3] && playerHitbox.left >= hitboxCoords.left[HBAmount3] && playerHitbox.right <= hitboxCoords.right[HBAmount3]) {
 			ableToMoveDown = false;
 			currentHitbox = HBAmount3;
-			if(pressedKeys[downCode] === true && menuOpen === false) {
+			if(pressedKeys[downCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[rightCode] === false && pressedKeys[leftCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_down_static.png";
 			}
 		} else if (currentHitbox !== HBAmount3) {
 		} else {
@@ -388,8 +398,9 @@ function startGame() {
 		if (playerHitbox.bottom >= hitboxCoords.top[HBAmount3] && playerHitbox.top <= hitboxCoords.bottom[HBAmount3] && playerHitbox.left >= hitboxCoords.right_min[HBAmount3] && playerHitbox.left <= hitboxCoords.right_max[HBAmount3]) {
 			ableToMoveLeft = false;
 			currentHitbox = HBAmount3;
-			if(pressedKeys[leftCode] === true && menuOpen === false) {
+			if(pressedKeys[leftCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[rightCode] === false && pressedKeys[downCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_left_static.png";
 			}
 		} else if (currentHitbox !== HBAmount3) {
 		} else {
@@ -399,8 +410,9 @@ function startGame() {
 		if (playerHitbox.bottom >= hitboxCoords.top[HBAmount3] && playerHitbox.top <= hitboxCoords.bottom[HBAmount3] && playerHitbox.right >= hitboxCoords.left_min[HBAmount3] && playerHitbox.right <= hitboxCoords.right_max[HBAmount3]) {
 			ableToMoveRight = false;
 			currentHitbox = HBAmount3;
-			if(pressedKeys[rightCode] === true && menuOpen === false) {
+			if(pressedKeys[rightCode] === true && menuOpen === false && pressedKeys[upCode] === false && pressedKeys[leftCode] === false && pressedKeys[downCode] === false) {
 				stopAnim = false;
+				player.src = "images/player/p_right_static.png";
 			}
 		} else if (currentHitbox !== HBAmount3) {
 		} else {
