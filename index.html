@@ -7,7 +7,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-	<a href="#" id="startButton" class="button" onclick="startGame()">Start Game</a>
+	<a href="#" id="startButton" class="button" onclick="newGame()">New Game</a>
+	<a href="#" id="contButton" class="button" onclick="contGame()">Continue</a>
+	<a href="#" id="controlsButton" class="button" onclick="controls()">Controls</a>
+	<a href="#" id="backButton" class="button" onclick="backToMenu()">Back</a>
+	<div id="loadfile">
+		<form enctype="multipart/form-data" onsubmit="e.preventDefault();" method="post">
+			<input id="save-file" type="file" />
+			<input type="submit" value="Load game">
+		</form>
+	</div>
 	<div id="controls">
 		<label for="upInput">Up:</label>
 		<input type="text" id="upInput" onkeydown="setInput(this)" size="3" maxlength="1">
@@ -21,7 +30,7 @@
 		<input type="text" id="useInput" onkeydown="setInput(this)" size="3" maxlength="1">
 		<label for="upInput">Slash Weapon:</label>
 		<input type="text" id="slashInput" onkeydown="setInput(this)" size="3" maxlength="1">
-		<button id="saveControls" onclick="saveControls()">Save!</button><br>
+		<button id="saveControls" class="button" onclick="saveControls()">Save!</button><br>
 		<p id="saved">Controls have been saved!</p>
 	</div>
 	<div id="gameBorder">
@@ -45,10 +54,10 @@
 				<img src="images/environment/e_big_tree1.png" id="bigtrees" class="bigTree5">
 				<span id="hitbox" class="bigTreeHitbox5 bigTreeHitboxes hitbox"></span>
 			</div>
-			<div style="display: none;" id="overworld_start2">
-				<span id="loadbox" class="ow1Loadbox loadboxes loadbox"></span>
-				<img src="images/environment/e_big_tree1.png" id="bigtrees" class="bigTree6">
-				<span id="hitbox" class="bigTreeHitbox6 bigTreeHitboxes hitbox"></span>
+			<div id="overworld_start2">
+				<span id="loadbox" style="display: none;" class="ow1Loadbox loadboxes loadbox"></span>
+				<img src="images/environment/e_big_tree1.png" style="display: none;" id="bigtrees" class="bigTree6">
+				<span id="hitbox" style="display: none;" class="bigTreeHitbox6 bigTreeHitboxes hitbox"></span>
 			</div>
 
 			<img src="images/ow1.png" id="owImage">
@@ -58,10 +67,20 @@
 			<p id="menuButtons"><a href="#" id="invButton" class="menuButton">Inventory</a></p>
 			<p id="menuButtons"><a href="#" id="ctrlButton" class="menuButton">Controls</a></p>
 			<p id="menuButtons"><a href="#" id="testButton" class="menuButton">testButton</a></p>
+			<p id="menuButtons"><a href="#" id="saveButton" class="menuButton">Save</a></p>
 			<p id="menuButtons"><a href="#" id="quitButton" class="menuButton">Quit</a></p>
 		</div>
 
 		
+	</div>
+	<div id="menuBar">
+		<div style="display: none" id="textBox">
+			
+		</div>
+		<div id="invBox">
+			<div id="hp"></div>
+			<div id="inventory"></div>
+		</div>
 	</div>
 </body>
 </html>

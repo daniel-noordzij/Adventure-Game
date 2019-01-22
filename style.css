@@ -3,6 +3,9 @@
 	padding: 0;
 }
 
+a {
+	text-decoration: none;
+}
 
 .button {
 	display: inline-block;
@@ -10,6 +13,21 @@
 	background-color: blue;
 	border-radius: 8px;
 	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+#backButton {
+	display: none;
+	float: right;
+}
+
+#controls {
+	display: none;
+}
+
+#loadfile {
+	display: none;
 }
 
 .player {
@@ -57,11 +75,21 @@
 
 #gameBorder {
 	/*border: 2px solid black;*/
-	margin: 5% 0 0 25%;
+	margin: 1% 0 0 25%;
 	height: 502px;
 	width: 756px;
 	display: none;
 	overflow: hidden;
+}
+
+#menuBar {
+	margin: 0 0 0 25%;
+	height: 100px;
+	width: 756px;
+	background-color: gray;
+	display: none;
+	border: 1px solid black;
+	border-radius: 4px;
 }
 
 /* -------- */
@@ -134,7 +162,7 @@
 	width: 50px;
 	height: 10px;
 	margin-left: 150px;
-	margin-top: 426px;
+	margin-top: 490px;
 }
 
 /* ----------------- */
