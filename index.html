@@ -11,8 +11,9 @@
 	<a href="#" id="contButton" class="button" onclick="contGame()">Continue</a>
 	<a href="#" id="controlsButton" class="button" onclick="controls()">Controls</a>
 	<a href="#" id="backButton" class="button" onclick="backToMenu()">Back</a>
+	<iframe name="votar" style="display:none;"></iframe>
 	<div id="loadfile">
-		<form enctype="multipart/form-data" onsubmit="e.preventDefault();" method="post">
+		<form enctype="multipart/form-data" onsubmit="loadFileAsText()" method="post" target="votar">
 			<input id="save-file" type="file" />
 			<input type="submit" value="Load game">
 		</form>
@@ -55,7 +56,7 @@
 				<span id="hitbox" class="bigTreeHitbox5 bigTreeHitboxes hitbox"></span>
 			</div>
 			<div id="overworld_start2">
-				<span id="loadbox" style="display: none;" class="ow1Loadbox loadboxes loadbox"></span>
+				<span id="loadbox" class="ow1Loadbox loadboxes loadbox"></span>
 				<img src="images/environment/e_big_tree1.png" style="display: none;" id="bigtrees" class="bigTree6">
 				<span id="hitbox" style="display: none;" class="bigTreeHitbox6 bigTreeHitboxes hitbox"></span>
 			</div>
@@ -74,12 +75,45 @@
 		
 	</div>
 	<div id="menuBar">
-		<div style="display: none" id="textBox">
-			
+		<div style="display: none;" id="textBox">
+			<div id="textFace">
+				<img id="random" src="images/textbox/random.png">
+			</div>
 		</div>
-		<div id="invBox">
-			<div id="hp"></div>
-			<div id="inventory"></div>
+		<div style="display: block;" id="invBox">
+			<div id="hp">
+				<img src="images/inventory/heart1.png" id="hpHeart">
+				<img src="images/inventory/heart1.png" id="hpHeart">
+				<img src="images/inventory/heart1.png" id="hpHeart">
+			</div>
+			<div id="inventory">
+				<table>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

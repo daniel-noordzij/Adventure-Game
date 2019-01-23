@@ -29,6 +29,7 @@ function controls() {
 }
 
 function backToMenu() {
+	document.getElementById('loadfile').style.display = "none";
 	document.getElementById('controls').style.display = "none";
 	document.getElementById('startButton').style.display = "inline-block";
 	document.getElementById('contButton').style.display = "inline-block";
@@ -44,39 +45,28 @@ function contGame() {
 	document.getElementById('controlsButton').style.display = "none";
 }
 
-function startRead() {
-	var file = document.getElementById('save-file').files[0];
-	if(file){
-		getAsText(file);
-	}
-}
-/*
-$get('http://localhost/foo.txt', function(data) {
-    alert(data);
-});
-*/
+function loadFileAsText(){
+	var fileToLoad = document.getElementById("save-file").files[0];
 
-function getAsText(readFile) {
+	var fileReader = new FileReader();
+	fileReader.onload = function(fileLoadedEvent){
+		var textFromFileLoaded = fileLoadedEvent.target.result;
+		console.log(textFromFileLoaded);
+		var saveObj = JSON.parse(textFromFileLoaded);
+		document.getElementById('loadfile').style.display = "none";
+		document.getElementById('backButton').style.display = "none";
+		newGame(saveObj);
+	};
 
-  var reader = new FileReader();
-
-  reader.readAsText(readFile, "UTF-16");
-  reader.onerror = errorHandler;
+	fileReader.readAsText(fileToLoad, "UTF-8");
 }
 
-function errorHandler(evt) {
-  if(evt.target.error.name == "NotReadableError") {
-    alert("Something went wrong, please try again!");
-  }
-}
-
-function newGame() {
+function newGame(continueData) {
 	document.getElementById('gameBorder').style.display = "inline-block";
 	document.getElementById('menuBar').style.display = "inline-block";
 	document.getElementById('startButton').style.display = "none";
 	document.getElementById('contButton').style.display = "none";
 	document.getElementById('controlsButton').style.display = "none";
-	
 
 	var slashing = false,
 		slashTimer = false,
@@ -104,6 +94,12 @@ function newGame() {
 		loadboxes = document.getElementsByClassName("loadbox");
 	var loadboxCoords = {left:[], right:[], top:[], bottom:[]},
 		LBAmount = 0;
+
+	if (continueData) {
+		player.style.marginTop = continueData.location_top;
+		player.style.marginLeft = continueData.location_left;
+		var heartAmount = continueData.hearts;
+	}
 
 	$(document.body).keydown(function (evt) {
 		if(!pressedKeys.includes(evt.keyCode)){
@@ -257,8 +253,8 @@ function newGame() {
 		var hearts = 3,
 			locTop = player.style.marginTop,
 			locLeft = player.style.marginLeft,
-			data = { hearts: hearts, location_top: locTop, location_left: locLeft},
-			fileName = "Savegame-" + Math.floor(Date.now() / 1000) + ".savegame";
+			data = {hearts: hearts, location_top: locTop, location_left: locLeft},
+			fileName = "Savefile-" + Math.floor(Date.now() / 1000) + ".savegame";
 		saveData(data, fileName);
 	});
 
@@ -517,12 +513,14 @@ function newGame() {
 
 		if ((playerHitbox.top <= loadboxCoords.bottom[LBAmount] && playerHitbox.top >= loadboxCoords.top[LBAmount]) || (playerHitbox.bottom <= loadboxCoords.bottom[LBAmount] && playerHitbox.bottom >= loadboxCoords.top[LBAmount]) || (playerHitbox.top <= loadboxCoords.top[LBAmount] && playerHitbox.bottom >= loadboxCoords.bottom[LBAmount])) {
 			if (playerHitbox.left >= loadboxCoords.left[LBAmount] && playerHitbox.right <= loadboxCoords.right[LBAmount] && loadboxes[LBAmount].style.display === "none") {
-				if (loadboxes[LBAmount].className.includes("ow1Loadbox")) {
+				if (loadboxes[LBAmount].className.includes("ow2Loadbox")) {
+					console.log("1");
 					$("#overworld_start1 *").css("display","none");
 					$("#overworld_start2 *").css("display","");
 					player.style.marginTop = "420px";
 				}
-				if (loadboxes[LBAmount].className.includes("ow2Loadbox")) {
+				if (loadboxes[LBAmount].className.includes("ow1Loadbox")) {
+					console.log("2");
 					$("#overworld_start2 *").css("display","none");
 					$("#overworld_start1 *").css("display","");
 					player.style.marginTop = "16px";
